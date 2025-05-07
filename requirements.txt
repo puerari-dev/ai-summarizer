@@ -2,3 +2,4 @@ python-dotenv
 ffmpeg-python
 openai
 yt-dlp
+streamlit
