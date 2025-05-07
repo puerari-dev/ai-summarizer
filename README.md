@@ -6,6 +6,8 @@ This project provides an automated workflow to:
 3. **Summarize** the transcribed text using GPT-4.
 4. **Save** the transcription and summary as Markdown files.
 
+Now featuring a user-friendly web interface built with Streamlit!
+
 It supports:
 - Equal partitioning of the audio for large files.
 - Timestamp-based partitioning using timestamps found in the YouTube video description (if available).
@@ -45,12 +47,13 @@ It supports:
    ```
    Or install them manually (below is a general example; your versions may vary):
    ```bash
-   pip install openai python-dotenv yt-dlp ffmpeg-python
+   pip install openai python-dotenv yt-dlp ffmpeg-python streamlit
    ```
    - `openai` – to access GPT-4 and Whisper.
    - `python-dotenv` – to load environment variables from a `.env` file.
    - `yt-dlp` – to download audio from YouTube.
    - `ffmpeg-python` – to handle audio processing (requires FFmpeg installed on your system).
+   - `streamlit` – to provide the web interface.
 
 3. **Install FFmpeg**  
    Ensure that [FFmpeg](https://ffmpeg.org/) is installed and accessible via your system’s PATH.  
@@ -82,6 +85,23 @@ GPT4_OUTPUT_COST_PER_K   = 0.015   # $0.015 per 1000 tokens of output (default)
 
 ## Usage
 
+You can use this tool in two ways:
+
+### 1. Web Interface (Recommended)
+Run the Streamlit interface for a user-friendly experience:
+
+```bash
+streamlit run app.py
+```
+
+This will open a web interface where you can:
+- Paste a YouTube URL or upload a local video file
+- Choose the partitioning method (equal or timestamps)
+- View real-time progress
+- See cost estimates
+- Access the generated transcriptions and summaries
+
+### 2. Command Line Interface
 Run the main script with the following arguments:
 
 ```bash
@@ -124,6 +144,7 @@ python main.py --input <SOURCE> [--partition <METHOD>]
 
 ```plaintext
 .
+├─ app.py                   # Streamlit web interface
 ├─ audio_chunker.py         # Splits audio files into chunks (equal or timestamp-based)
 ├─ audio_extractor.py       # Downloads YouTube audio or extracts audio from local video
 ├─ config.py                # Environment variables and cost configurations
